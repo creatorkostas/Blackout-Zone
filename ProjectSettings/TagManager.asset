@@ -12,6 +12,7 @@ TagManager:
   - chicken
   - deer
   - inventoryGrid
+  - PostProcessing
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
+  - PostProcessing
   - 
   - 
   - 
