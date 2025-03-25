@@ -1,0 +1,15 @@
+This package contains third-party assets under the following licenses (as of 30.3.2024):
+
+Textures:
+- asphalt_04_diff_2k(by Jandre van Heerden, licensed under CC0: https://polyhaven.com/all?a=Jandre%20van%20Heerden)
+- asphalt_04_disp_2k(by Jandre van Heerden, licensed under CC0: https://polyhaven.com/all?a=Jandre%20van%20Heerden)
+- asphalt_04_nor_gl_2k(by Jandre van Heerden, licensed under CC0: https://polyhaven.com/all?a=Jandre%20van%20Heerden)
+- asphalt_04_rough_2k(by Jandre van Heerden, licensed under CC0: https://polyhaven.com/all?a=Jandre%20van%20Heerden)
+- herringbone_pavement_diff_2k(by Charlotte Baglioni, licensed under CC0: https://polyhaven.com/all?a=Charlotte%20Baglioni)
+- herringbone_pavement_disp_2k(by Charlotte Baglioni, licensed under CC0: https://polyhaven.com/all?a=Charlotte%20Baglioni)
+- herringbone_pavement_nor_gl_2k(by Charlotte Baglioni, licensed under CC0: https://polyhaven.com/all?a=Charlotte%20Baglioni)
+- herringbone_pavement_rough_2k(by Charlotte Baglioni, licensed under CC0: https://polyhaven.com/all?a=Charlotte%20Baglioni)
+- warning-sign-30915_1280(by Jobber Nation, licensed under CC0: https://www.jobbernation.ca/event-advisory/warning-sign-30915_1280/)
+---
+Additional information:
+ - PD / CC0 license: https://creativecommons.org/publicdomain/zero/1.0/
