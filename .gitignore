@@ -2,6 +2,9 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
+
+/[Aa]ssets/BOKI/LowPolyNature/Terrain/ 
+
 .utmp/
 /[Ll]ibrary/
 /[Tt]emp/
