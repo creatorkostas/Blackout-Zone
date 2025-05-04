@@ -95,11 +95,11 @@ public class Specs : MonoBehaviour
         currentStamina = maxStamina;
         currentCold = TempDefaultRange[1] - 10f;
 
-        healthBar = statPanel.transform.GetChild(StatPanelChild.Health.GetHashCode()).GetComponent<Image>();
-        foodBar = statPanel.transform.GetChild(StatPanelChild.Food.GetHashCode()).GetComponent<Image>();
-        waterBar = statPanel.transform.GetChild(StatPanelChild.Water.GetHashCode()).GetComponent<Image>();
-        staminaBar = statPanel.transform.GetChild(StatPanelChild.Stamina.GetHashCode()).GetComponent<Image>();
-        tempText = statPanel.transform.GetChild(StatPanelChild.Cold.GetHashCode()).GetComponent<TextMeshProUGUI>();
+        healthBar = GameObject.FindGameObjectWithTag("healthBar").GetComponent<Image>();
+        foodBar = GameObject.FindGameObjectWithTag("foodBar").GetComponent<Image>();
+        waterBar = GameObject.FindGameObjectWithTag("waterBar").GetComponent<Image>();
+        staminaBar = GameObject.FindGameObjectWithTag("staminaBar").GetComponent<Image>();
+        tempText = GameObject.FindGameObjectWithTag("temptext").GetComponent<TextMeshProUGUI>();
     }
 
     void FixedUpdate(){
@@ -211,6 +211,7 @@ public class Specs : MonoBehaviour
         while(true){ 
             currentCold += fireData.HeatIntensity;
             // currentCold = Mathf.Clamp(currentCold, -500, TempDefaultRange.y + 30); 
+            currentCold = Mathf.Clamp(currentCold, -500, fireData.MaxHeatTemp); 
             yield return new WaitForSeconds(TempChangeTime);
         }
     }

@@ -7,7 +7,7 @@ public class FireEventData
     public bool IsNearFire;
     public float DistanceToFire;
     public float HeatIntensity;
-    public float MaxHeatTemp = 500f;
+    public float MaxHeatTemp = 30f;
     public Transform FireSource;
 
     public FireEventData(bool isNearFire, float distance, float heat, float maxTemp, Transform source)

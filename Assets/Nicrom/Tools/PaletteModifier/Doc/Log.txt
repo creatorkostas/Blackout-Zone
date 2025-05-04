@@ -1,0 +1,10 @@
+- Current PM Lite Version 1.0.1
+- Min Unity Version - 2021.3.33
+
+Release Notes:
+
+v1.0.1
+- Updated the link pointing to the review page.
+
+v1.0.0
+- Initial release.

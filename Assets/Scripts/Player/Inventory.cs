@@ -42,15 +42,18 @@ public class Inventory : MonoBehaviour
         return Mathf.Lerp(minSpeed, baseSpeed, weightFactor);
     }
 
-    public void AddGUIItem(Transform parent, string itemName, bool isUsable, Transform item){
-        GameObject panelObjParent = new GameObject(item.name);
+    public void AddGUIItem(Transform parent, PickableItems item, bool isUsable){
+        Debug.Log(item);
+        Debug.Log(item.gameObject.name);
+        Debug.Log(item.name);
+        GameObject panelObjParent = new GameObject(item.gameObject.name);
         panelObjParent.transform.SetParent(parent, false);
         // RectTransform panelRect = 
         panelObjParent.AddComponent<RectTransform>();
         Button panelObj = panelObjParent.AddComponent<Button>();
         // GameObject panelObj = panelObjParent.GetComponent<Button>().gameObject;
         // panelRect.sizeDelta = new Vector2(300, 400); // Set panel size
-        panelObj.onClick.AddListener(() => inventoryScreen.transform.GetChild(0).GetComponent<inventoryUI>().ShowContextMenu(item));
+        panelObj.onClick.AddListener(() => inventoryScreen.transform.GetChild(0).GetComponent<inventoryUI>().ShowContextMenu(item.gameObject.transform));
 
         panelObj.gameObject.AddComponent<Image>().color = new Color(0, 0, 0, 0.5f); // Semi-transparent background
 
@@ -71,19 +74,22 @@ public class Inventory : MonoBehaviour
         // itemImage.sprite = Resources.Load<Sprite>("your_image_name");
 
         // Create Text Object
-        UILib.Create.AddTextItem(panelObj.transform, itemName);
+        UILib.Create.AddTextItem(panelObj.transform, item.itemName);
     }
 
     
-
-    
+    public void DropAllItems(){
+        foreach (PickableItems item in inventory){
+            item.Drop();
+        }
+    }
 
     public void AddItemToInventory(PickableItems pickableItem){
         inventory.Add(pickableItem);
         if (pickableItem.TryGetComponent<usableItem>(out usableItem usableItem)){
-            AddGUIItem(inventoryGrid, pickableItem.itemName, true, pickableItem.gameObject.transform);
+            AddGUIItem(inventoryGrid, pickableItem, true);
         }else{
-            AddGUIItem(inventoryGrid, pickableItem.itemName, false, null); // TODO check if null is edge case
+            AddGUIItem(inventoryGrid, pickableItem, false); // TODO check if null is edge case
         }
         currentWeight += pickableItem.waight;
         Debug.Log("Added item to inventory: " + pickableItem.itemName + " weight: " + pickableItem.waight);

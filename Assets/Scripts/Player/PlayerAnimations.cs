@@ -19,7 +19,7 @@ public class PlayerAnimations : MonoBehaviour
     }
 
     public void MakeAnimation(bool isGrounded, Vector3 _direction, bool isRunning){
-        if (isGrounded && _direction == _JumpVector) 
+        if (_direction.y == _JumpVector.y) 
             animator.SetInteger("state", AnimationState.jump.GetHashCode());
         else if (_direction == Vector3.zero)
             animator.SetInteger("state", AnimationState.idle.GetHashCode());

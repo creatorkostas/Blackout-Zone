@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class fireStats : MonoBehaviour
 {
-    public float maxTemp = 500f;
+    public float maxTemp = 30f;
     // Start is called before the first frame update
 }

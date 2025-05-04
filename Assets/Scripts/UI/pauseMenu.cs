@@ -11,7 +11,7 @@ public class pauseMenu : MonoBehaviour
         Vector3 position;
         Quaternion rotation;
         player.transform.GetLocalPositionAndRotation(out position, out rotation);
-        PlayerMain.SavePlayerLocation(position);
+        // PlayerMain.SavePlayerLocation(position);
         SceneManager.LoadScene(Enums.Scenes.MainMenu.GetHashCode());
     }
 
@@ -23,7 +23,7 @@ public class pauseMenu : MonoBehaviour
         Vector3 position;
         Quaternion rotation;
         player.transform.GetLocalPositionAndRotation(out position, out rotation);
-        PlayerMain.SavePlayerLocation(position);
+        // PlayerMain.SavePlayerLocation(position);
         Application.Quit();
     }
 }

@@ -23,16 +23,16 @@ public class DetectFire : MonoBehaviour
 
     // Update is called once per frame
     // Start is called before the first frame update
-    void OnTriggerEnter(Collider hotObject)
+    void OnTriggerEnter(Collider triggerObject)
     {
-        if (hotObject.CompareTag("HotObject"))
+        if (triggerObject.CompareTag("HotObject"))
         {
             // nearHotObject = true;
-            currentFire = hotObject.transform;
+            currentFire = triggerObject.transform;
             float distance = Vector3.Distance(transform.position, currentFire.position);
             float heatIntensity = Mathf.Clamp(10f * distance, 0, 150f);
 
-            FireEventData fireData = new FireEventData(true, distance, heatIntensity, hotObject.GetComponent<fireStats>().maxTemp, currentFire);
+            FireEventData fireData = new FireEventData(true, distance, heatIntensity, triggerObject.GetComponent<fireStats>().maxTemp, currentFire);
             FireEventManager.FireDetected(fireData);
         }
     }
@@ -48,18 +48,6 @@ public class DetectFire : MonoBehaviour
         }
     }
 
-    // void Update()
-    // {
-    //     if (nearHotObject && currentFire != null)
-    //     {
-    //         float distance = Vector3.Distance(transform.position, currentFire.position);
-    //         float heatIntensity = Mathf.Clamp(10f / distance, 0, 5f); // Example heat scaling
-    //         temperature = Mathf.Min(temperature + heatRate * heatIntensity * Time.deltaTime, maxTemperature);
-    //     }
-    //     else
-    //     {
-    //         temperature = Mathf.Max(temperature - coolRate * Time.deltaTime, 0);
-    //     }
-    // }
+    
 
 }

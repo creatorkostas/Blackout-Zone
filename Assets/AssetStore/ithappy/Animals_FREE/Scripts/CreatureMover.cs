@@ -1,6 +1,8 @@
 using System;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 namespace Controller
 {
@@ -9,6 +11,15 @@ namespace Controller
     [DisallowMultipleComponent]
     public class CreatureMover : MonoBehaviour
     {
+
+        [Header("AI")]
+        private Transform player;
+        public float detectionRadius = 10f;
+        public float runAwayDistance = 15f;
+        public float wanderRadius = 10f;
+        public bool attackPlayer = false;
+        private NavMeshAgent agent;
+
         [Header("Movement")]
         [SerializeField]
         private float m_WalkSpeed = 1f;
@@ -56,6 +67,10 @@ namespace Controller
 
         private void Awake()
         {
+            agent = transform.GetComponent<NavMeshAgent>();
+            // timer = wanderTime;
+            if (player == null) player = GameObject.FindGameObjectWithTag("Player").transform;
+
             m_Transform = transform;
             m_Controller = GetComponent<CharacterController>();
             m_Animator = GetComponent<Animator>();
@@ -64,8 +79,52 @@ namespace Controller
             m_Animation = new AnimationHandler(m_Animator, m_VerticalID, m_StateID);
         }
 
+        void RunAwayFromPlayer()
+    {
+        // Debug.Log("Run away from player");
+        Vector3 runDirection = transform.position + (transform.position - player.position).normalized * runAwayDistance;
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(runDirection, out hit, runAwayDistance, NavMesh.AllAreas))
+        {
+            agent.SetDestination(hit.position);
+            
+            // agent.Move(agent.desiredVelocity * Time.deltaTime);
+        }
+    }
+
+    void WanderRandomly()
+    {
+        // timer -= Time.deltaTime;
+        // if (timer <= 0f || !agent.hasPath)
+        // {
+        // Debug.Log("Wander randomly");
+        Vector3 randomDirection = Random.insideUnitSphere * wanderRadius;
+        randomDirection += transform.position;
+            
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(randomDirection, out hit, wanderRadius, NavMesh.AllAreas))
+        {
+            agent.SetDestination(hit.position);
+            // agent.Move(agent.desiredVelocity * Time.deltaTime);
+        }
+            // timer = wanderTime;
+        // }
+    }
+
         private void Update()
         {
+            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+            if (distanceToPlayer < detectionRadius)
+            {
+                if (attackPlayer) agent.SetDestination(player.position);
+                else RunAwayFromPlayer();
+            }
+            else
+            {
+                WanderRandomly();
+            }
+
             m_Movement.Move(Time.deltaTime, in m_Axis, in m_Target, m_IsRun, m_IsMoving, out var animAxis, out var isAir);
             m_Animation.Animate(in animAxis, m_IsRun ? 1f : 0f, Time.deltaTime);
         }
@@ -178,7 +237,7 @@ namespace Controller
                 }
 
                 CaculateGravity(deltaTime, out isAir);
-                Displace(deltaTime, in movement, isRun);
+                // Displace(deltaTime, in movement, isRun);
                 Turn(in targetForward, isMoving);
                 UpdateRotation(deltaTime);
 
@@ -280,7 +339,7 @@ namespace Controller
                     rotDelta *= Mathf.Sign(m_TargetAngle);
                 }
 
-                m_Transform.Rotate(Vector3.up, rotDelta);
+                // m_Transform.Rotate(Vector3.up, rotDelta);
             }
         }
 

@@ -45,7 +45,7 @@ public class inventoryUI : MonoBehaviour
     }
 
     private void seeIfOutSideOfContextMenu(){
-        if (contextMenu.activeSelf && Input.GetMouseButtonDown(0))
+        if (contextMenu.activeSelf && (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))) 
         {
             if (!RectTransformUtility.RectangleContainsScreenPoint(contextMenu.GetComponent<RectTransform>(), Input.mousePosition))
             {

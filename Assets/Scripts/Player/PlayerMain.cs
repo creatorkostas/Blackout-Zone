@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.Entities.UniversalDelegates;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,7 +17,11 @@ public class PlayerMain : MonoBehaviour
     private float previusHeatIntensity = 0f;
 
     private GameObject pauseMenu;
+
+    private GameObject messageText;
+    private int dayCounter = 0;
     
+    private ObjectivesManager objectivesManager;
 
     // [SerializeField] private Cinemachine.CinemachineFreeLook CinemachineCamera;
     [SerializeField] private bool lockCursor = true;
@@ -22,6 +29,7 @@ public class PlayerMain : MonoBehaviour
 
     void OnEnable(){
         FireEventManager.OnFireDetection += HandleFireDetection;
+        DayNightEventManager.OnCycleCompletion += HandleDayNightCycleCompletion;
     }
 
     void OnDisable(){
@@ -41,6 +49,10 @@ public class PlayerMain : MonoBehaviour
     void Start()
     {
         // playerAnimations = GetComponent<PlayerAnimations>();
+        objectivesManager = GameObject.FindGameObjectWithTag("objectivesManager").GetComponent<ObjectivesManager>();
+        messageText = GameObject.FindGameObjectWithTag("messageText");
+        messageText.GetComponent<TextMeshProUGUI>().text = "";
+        messageText.SetActive(false);
         playerMovement = GetComponent<PlayerMovement>();
         specs = GetComponent<Specs>();
         findInteractablesObjects = GetComponent<findIteractables>();
@@ -53,7 +65,7 @@ public class PlayerMain : MonoBehaviour
 
         pauseMenu = GameObject.FindGameObjectWithTag("pauseScreen");
 
-        inventory = GetComponent<Inventory>();
+        inventory = transform.GetComponent<Inventory>();
         inventory.SetMaxCarryWeight(specs.maxCarryWeight);
         playerMovement.SetVariables(specs, findInteractablesObjects, inventory, pauseMenu);
 
@@ -62,11 +74,23 @@ public class PlayerMain : MonoBehaviour
         specs.TempChange(State.startDrop, null);
         specs.HealthChange(State.startDrop);
         pauseMenu.SetActive(false);
-        Vector3 loadedLocation = LoadPlayerLocation();
-        transform.SetLocalPositionAndRotation(loadedLocation, new Quaternion(0, 0, 0, 0));
+        transform.SetLocalPositionAndRotation(LoadPlayerLocation(), new Quaternion(0, 0, 0, 0));
+        SetupObjectives();
+        // objectivesManager.AddObjective(
+        //     new ObjectiveData("passDay1", "Survive the first day", "day1", () => { 
+        //         DisplayMessage("You survived the first day!");
+        //         objectivesManager.AddObjective(new ObjectiveData("pass5Days", "Survive for 5 days", "day5", () => {
+        //             DisplayMessage("You survived for 5 days!");
+        //         }));  
+                
+        //         }) 
+        
+        // );
         // inventoryScreen.SetActive(false); // Close the inventory screen
     }
+
     
+
     // TODO change heat intensity to be relative to distance
     void HandleFireDetection(FireEventData fireData)
     {
@@ -82,6 +106,37 @@ public class PlayerMain : MonoBehaviour
             }
         }
     }
+
+    void HandleDayNightCycleCompletion(DayNightEventData DayNighteData)
+    {
+        // TODO add day counter
+        dayCounter++;
+        Debug.Log("DayNighteData.hasCompletedCycle: " + DayNighteData.hasCompletedCycle);
+        ObjectivesManager.TriggerEvent(objectivesManager, "day"+dayCounter);
+        DisplayMessage("Day " + dayCounter);
+    }
+
+    void DisplayMessage(string message)
+    {
+        if (!messageText.activeSelf)
+            messageText.SetActive(true);
+        messageText.GetComponent<TextMeshProUGUI>().text += message + "\n";
+        StartCoroutine(DisableObjectAfterDelay(messageText, 7f, true));
+    }
+
+    IEnumerator DisableObjectAfterDelay(GameObject objectToDisable, float delay, bool clearText = false){
+        yield return new WaitForSeconds(delay);
+        objectToDisable.SetActive(false);
+        if (clearText)
+            messageText.GetComponent<TextMeshProUGUI>().text = "";
+    }
+
+    IEnumerator ExecuteAfterDelay(float delay, Action OnObjectiveCompletion){
+        yield return new WaitForSeconds(delay);
+        OnObjectiveCompletion();
+        
+    }
+    
     
     void FixedUpdate()
     {
@@ -91,7 +146,8 @@ public class PlayerMain : MonoBehaviour
 
         if(specs.currentHealth <= 0){
             Debug.Log("Game Over");
-            Application.Quit();
+            inventory.DropAllItems();
+            SceneManager.LoadScene("GameOver");
         }else if(specs.currentFood == 0 || specs.currentWater == 0){
             specs.HealthChange(State.startDrop);
         }else{
@@ -108,6 +164,54 @@ public class PlayerMain : MonoBehaviour
             Debug.Log("(PlayerMain::FixedUpdate) Water: " + specs.currentWater);
             Debug.Log("(PlayerMain::FixedUpdate) Cold: " + specs.currentCold);
             yield return new WaitForSeconds(1);
+        }
+    }
+
+    // -------------------------------------------------------------
+    //                            GAMEPLAY
+    // -------------------------------------------------------------
+    private void SetupObjectives(){
+        objectivesManager.AddObjective(
+            new ObjectiveData("firstCamp", "Find the nearby camp", "firstCamp", () => { 
+                DisplayMessage("You have found the camp!");
+                objectivesManager.AddObjective(
+                    new ObjectiveData("findTheSupplies", "Find the nessecery supplies to survive", "findSupplies")
+                    );
+            })
+        );
+
+        objectivesManager.AddObjective(
+            new ObjectiveData("surviveDay1", "Survive the first day", "day1", () => { 
+                DisplayMessage("You survived the first day!");
+
+                objectivesManager.AddObjective(
+                    new ObjectiveData("survivefor5Days", "Survive for 5 days untily rescure arive at the camp", "campDay5", () => {
+                        DisplayMessage("You survived untile rescure arrived at the camp!");
+                    })
+                );
+                DisplayMessage("Make sure to GET IN the first camp in day 5!");
+            })
+        );
+    }
+
+    void OnTriggerEnter(Collider triggerObject)
+    {
+        if (triggerObject.CompareTag("firstCamp"))
+        {
+            DisplayMessage("The first camp");
+            ObjectivesManager.TriggerEvent(objectivesManager, "firstCamp");
+            if (dayCounter == 5) 
+            {
+                ObjectivesManager.TriggerEvent(objectivesManager, "campDay5");   
+            } else if (dayCounter >= 5){
+                DisplayMessage("You missed the rescure window!");
+                DisplayMessage("Game Over!");
+                StartCoroutine(ExecuteAfterDelay(20, () => {
+                    Debug.Log("Game Over");
+                    inventory.DropAllItems();
+                    SceneManager.LoadScene("GameOver");
+                }));
+            }
         }
     }
 }

@@ -1,0 +1,285 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4367786455268094551
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1672974241681230555}
+  m_Layer: 0
+  m_Name: rocks2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1672974241681230555
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4367786455268094551}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 992.1, y: 2.0310764, z: 1016.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1101031612852858283}
+  - {fileID: 4951386705453531117}
+  - {fileID: 8636253972894475012}
+  - {fileID: 4514873095043054947}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &910847296118544989
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1672974241681230555}
+    m_Modifications:
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 28.49585
+      objectReference: {fileID: 0}
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 21.280506
+      objectReference: {fileID: 0}
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 28.194458
+      objectReference: {fileID: 0}
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.98055136
+      objectReference: {fileID: 0}
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.19626272
+      objectReference: {fileID: 0}
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 22.637
+      objectReference: {fileID: 0}
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029853199100391912, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_Name
+      value: Snow_Small_Boulder1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+--- !u!4 &1101031612852858283 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+  m_PrefabInstance: {fileID: 910847296118544989}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4416994986069248661
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1672974241681230555}
+    m_Modifications:
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 28.432495
+      objectReference: {fileID: 0}
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 21.294014
+      objectReference: {fileID: 0}
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 28.96997
+      objectReference: {fileID: 0}
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.954823
+      objectReference: {fileID: 0}
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.19126855
+      objectReference: {fileID: 0}
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.1741248
+      objectReference: {fileID: 0}
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.1463215
+      objectReference: {fileID: 0}
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 18.318
+      objectReference: {fileID: 0}
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 24.156
+      objectReference: {fileID: 0}
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 21.377
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029853199100391912, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_Name
+      value: Snow_Small_Boulder1 (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+--- !u!4 &4514873095043054947 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+  m_PrefabInstance: {fileID: 4416994986069248661}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6179481546443504641
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1672974241681230555}
+    m_Modifications:
+    - target: {fileID: 1258534271459427308, guid: 407f4f3786e8e4647a98bcc05629500d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 28.59375
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258534271459427308, guid: 407f4f3786e8e4647a98bcc05629500d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 21.818924
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258534271459427308, guid: 407f4f3786e8e4647a98bcc05629500d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 28.358032
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258534271459427308, guid: 407f4f3786e8e4647a98bcc05629500d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.97315687
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258534271459427308, guid: 407f4f3786e8e4647a98bcc05629500d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258534271459427308, guid: 407f4f3786e8e4647a98bcc05629500d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.23014314
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258534271459427308, guid: 407f4f3786e8e4647a98bcc05629500d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258534271459427308, guid: 407f4f3786e8e4647a98bcc05629500d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258534271459427308, guid: 407f4f3786e8e4647a98bcc05629500d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 26.611
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258534271459427308, guid: 407f4f3786e8e4647a98bcc05629500d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7567892748640938965, guid: 407f4f3786e8e4647a98bcc05629500d, type: 3}
+      propertyPath: m_Name
+      value: Snow_Small_Boulder2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 407f4f3786e8e4647a98bcc05629500d, type: 3}
+--- !u!4 &4951386705453531117 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1258534271459427308, guid: 407f4f3786e8e4647a98bcc05629500d, type: 3}
+  m_PrefabInstance: {fileID: 6179481546443504641}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8376272658089301234
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1672974241681230555}
+    m_Modifications:
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 28.925964
+      objectReference: {fileID: 0}
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 21.336197
+      objectReference: {fileID: 0}
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 28.671753
+      objectReference: {fileID: 0}
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.98055136
+      objectReference: {fileID: 0}
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.19626272
+      objectReference: {fileID: 0}
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 22.637
+      objectReference: {fileID: 0}
+    - target: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029853199100391912, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+      propertyPath: m_Name
+      value: Snow_Small_Boulder1 (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+--- !u!4 &8636253972894475012 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 280450923956058102, guid: 03ec163020e3afe49841d01fa797a4e6, type: 3}
+  m_PrefabInstance: {fileID: 8376272658089301234}
+  m_PrefabAsset: {fileID: 0}

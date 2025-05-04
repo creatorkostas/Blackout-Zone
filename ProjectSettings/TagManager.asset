@@ -13,6 +13,18 @@ TagManager:
   - deer
   - inventoryGrid
   - PostProcessing
+  - SpawnItem
+  - messageText
+  - objective
+  - objectivesList
+  - objectivesManager
+  - firstCamp
+  - worldSun
+  - healthBar
+  - foodBar
+  - waterBar
+  - staminaBar
+  - temptext
   layers:
   - Default
   - TransparentFX

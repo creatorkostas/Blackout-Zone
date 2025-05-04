@@ -19,13 +19,16 @@ public class animal : MonoBehaviour
     // public float wanderTime = 5f;
 
     private NavMeshAgent agent;
+    private Rigidbody rb;
     // private float timer;
 
     void Start()
     {
         agent = transform.GetComponent<NavMeshAgent>();
+        rb = transform.GetComponent<Rigidbody>();
         // timer = wanderTime;
         if (player == null) player = GameObject.FindGameObjectWithTag("Player").transform;
+
 
     }
 
@@ -35,7 +38,8 @@ public class animal : MonoBehaviour
 
         if (distanceToPlayer < detectionRadius)
         {
-            if (attackPlayer) agent.SetDestination(player.position);
+            // TODO add animale to face the player
+            if (attackPlayer) agent.SetDestination(player.position-(new Vector3(0.5f, 0.5f, 0.5f)));
             else RunAwayFromPlayer();
         }
         else
@@ -74,6 +78,22 @@ public class animal : MonoBehaviour
         }
             // timer = wanderTime;
         // }
+    }
+
+    void OnTriggerEnter(Collider triggerObject)
+    {
+        Debug.Log("ready to trigger");
+        if (triggerObject.CompareTag("Player") && attackPlayer)
+        {
+            agent.isStopped = true;
+            Debug.Log("trigger");
+            StartCoroutine(WaitTimer());
+        }
+    }
+
+    IEnumerator WaitTimer(){
+        yield return new WaitForSeconds(5);
+        agent.isStopped = false;
     }
 
 }

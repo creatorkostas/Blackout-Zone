@@ -102,6 +102,7 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerActions
         // _direction = new Vector3(0, 1f, 0);
         if (context.started && controller.isGrounded) // Jump only when on ground
         {
+            Debug.Log("jump entered");
             verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity); // Physics-based jump
             isJumping = true;
         }
@@ -140,7 +141,9 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerActions
         if (context.started && findInteractablesObjects.nearbyObject != null){
             // findInteractablesObjects.nearbyObject.PickUp();
             findInteractablesObjects.nearbyObject.PickUp(transform);
+            Debug.Log(findInteractablesObjects.nearbyObject);
             inventory.AddItemToInventory(findInteractablesObjects.nearbyObject);
+            Debug.Log("3");
             speed = inventory.GetReducedSpeed(specs.minSpeed, specs.walkSpeed);
         }
         // Debug.Log(findInteractablesObjects.nearbyObject.itemName);
@@ -169,13 +172,19 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerActions
         cameraRight.y = 0;
         cameraRight.Normalize();
 
+        Vector3 cameraUp = mainCamera.up;
+        cameraUp.y = 0;
+        cameraUp.Normalize();
+
+
         // Convert moveInput to world direction
-        Vector3 moveDirection = cameraRight * _direction.x + cameraForward * _direction.z;
+        Vector3 moveDirection = cameraRight * _direction.x + cameraForward * _direction.z + cameraUp * _direction.y;
         moveDirection.Normalize();
 
         // Rotate player towards movement direction
         if (moveDirection != Vector3.zero)
         {
+            
             Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
             float rotationSpeed = 10f;
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
