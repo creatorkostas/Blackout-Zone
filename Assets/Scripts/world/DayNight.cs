@@ -8,7 +8,7 @@ public class DayNight : MonoBehaviour
     public Light sun;
 
     private float startRogDensity;
-    private Color fogColor;
+    private float sunIntensity;
 
     private Coroutine dayNightCoroutine = null;
     private float startingRotation = 0f;
@@ -21,7 +21,7 @@ public class DayNight : MonoBehaviour
     void Start()
     {
         startRogDensity = RenderSettings.fogDensity;
-        fogColor = RenderSettings.fogColor;
+        sunIntensity = sun.intensity;
         if (sun != null){
             dayNightCoroutine = StartCoroutine(StartDayTime());
             startingRotation = sun.transform.eulerAngles.x;
@@ -36,10 +36,12 @@ public class DayNight : MonoBehaviour
             isPhenomenon = true;
             // RenderSettings.fogColor = Color.black;
             RenderSettings.fogDensity = nightFogDensity;
-            Debug.Log("Phenomenon started");
+            sun.intensity = 0.8f;
+            // Debug.Log("Phenomenon started");
         } else {
+            sun.intensity = sunIntensity;
             isPhenomenon = false;
-            Debug.Log("Phenomenon ended");
+            // Debug.Log("Phenomenon ended");
             // RenderSettings.fogColor = fogColor;
             // RenderSettings.fogDensity = startRogDensity;
         }
@@ -60,15 +62,15 @@ public class DayNight : MonoBehaviour
     while (true)
     {
         // Rotate sun
-        // sun.transform.Rotate(new Vector3(1, 0, 0));
+        sun.transform.Rotate(new Vector3(1, 0, 0));
 
         // Get sun angle
         float sunAngle = sun.transform.eulerAngles.x;
 
         // Normalize angle to [0, 360)
         // if (sunAngle > 360f) sunAngle -= 360f;
-        PhenomenonStart();
-
+        
+        // Debug.Log(!isPhenomenon);
         if (!isPhenomenon){
             // Compute fog density
             // Assume 0° (sunrise) to 180° (sunset) = Daytime, and 180° to 360° = Night
@@ -91,6 +93,7 @@ public class DayNight : MonoBehaviour
         if (Mathf.Approximately(sunAngle, startingRotation))
         {
             DayNightEventManager.CycleCompletion(new DayNightEventData(true));
+            PhenomenonStart();
         }
 
         yield return new WaitForSeconds(timeChangeRateInSeconds);

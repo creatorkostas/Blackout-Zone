@@ -83,7 +83,9 @@ public class inventoryUI : MonoBehaviour
         if (selectedItem != null)
         {
             selectedItem.GetComponent<usableItem>().UseItem();
-            inventory.RemoveItemFromInventory(selectedItem.GetComponent<PickableItems>());
+            if (!selectedItem.GetComponent<usableItem>().IsNote()){ 
+                inventory.RemoveItemFromInventory(selectedItem.GetComponent<PickableItems>());
+            }
             Debug.Log("Using item: " + selectedItem.GetComponent<PickableItems>().itemName);
             contextMenu.SetActive(false);
         }

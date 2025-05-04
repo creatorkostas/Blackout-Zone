@@ -19,6 +19,7 @@ public class PlayerMain : MonoBehaviour
     private GameObject pauseMenu;
 
     private GameObject messageText;
+    private GameObject noteTextScreen;
     private int dayCounter = 0;
     
     private ObjectivesManager objectivesManager;
@@ -73,6 +74,8 @@ public class PlayerMain : MonoBehaviour
         specs.StartWaterDrop();
         specs.TempChange(State.startDrop, null);
         specs.HealthChange(State.startDrop);
+        noteTextScreen = GameObject.FindGameObjectWithTag("noteTextScreen");
+        noteTextScreen.SetActive(false);
         pauseMenu.SetActive(false);
         transform.SetLocalPositionAndRotation(LoadPlayerLocation(), new Quaternion(0, 0, 0, 0));
         SetupObjectives();
@@ -165,6 +168,11 @@ public class PlayerMain : MonoBehaviour
             Debug.Log("(PlayerMain::FixedUpdate) Cold: " + specs.currentCold);
             yield return new WaitForSeconds(1);
         }
+    }
+
+    public void displayNote(string noteText){
+        GameObject.FindGameObjectWithTag("noteText").GetComponent<TextMeshProUGUI>().text = noteText;
+        GameObject.FindGameObjectWithTag("noteTextScreen").SetActive(true);
     }
 
     // -------------------------------------------------------------

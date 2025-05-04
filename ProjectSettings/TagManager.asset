@@ -25,6 +25,8 @@ TagManager:
   - waterBar
   - staminaBar
   - temptext
+  - noteText
+  - noteTextScreen
   layers:
   - Default
   - TransparentFX
